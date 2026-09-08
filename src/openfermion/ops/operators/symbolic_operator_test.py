@@ -1476,7 +1476,7 @@ class SymbolicOperatorTest2(unittest.TestCase):
         import sympy
 
         x = sympy.Symbol('x')
-        
+
         # Operator with x - x (evaluates to 0 on compress)
         op = MockOperator1(((0, 1), (1, 0)), x - x)
         op.compress()

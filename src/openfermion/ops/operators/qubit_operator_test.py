@@ -280,6 +280,7 @@ def test_get_operator_groups_six():
     assert check_length(operator_groups, [4, 4, 3, 3, 3, 3])
     assert check_sum(operator_groups, operator)
 
+
 def test_qubit_operator_sympy_support():
     import sympy
 
@@ -296,5 +297,3 @@ def test_qubit_operator_sympy_support():
     cancelled = hamiltonian - x * QubitOperator('X0 X5')
     cancelled.compress()
     assert ((0, 'X'), (5, 'X')) not in cancelled.terms
-
-

@@ -17,8 +17,11 @@ import re
 import warnings
 import numbers
 
+from openfermion.config import EQ_TOLERANCE
+
 try:
     import sympy
+
     HAS_SYMPY = True
 except ImportError:  # pragma: no cover
     HAS_SYMPY = False
@@ -29,7 +32,6 @@ if HAS_SYMPY:
 else:
     COEFFICIENT_TYPES = (int, float, complex, numbers.Number)
 
-from openfermion.config import EQ_TOLERANCE
 
 # COEFFICIENT_TYPES = (int, float, complex, sympy.Expr, numbers.Number)/
 
@@ -742,7 +744,6 @@ class SymbolicOperator(metaclass=abc.ABCMeta):
 
         self.terms = new_terms
 
-        
     def induced_norm(self, order=1):
         r"""
         Compute the induced p-norm of the operator.
@@ -813,4 +814,4 @@ class SymbolicOperator(metaclass=abc.ABCMeta):
         for i in range(num_groups):
             yield self.accumulate(
                 itertools.islice(operators, len(range(i, len(self.terms), num_groups)))
-            ) 
+            )
