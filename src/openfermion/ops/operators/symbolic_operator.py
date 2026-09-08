@@ -20,9 +20,6 @@ from typing import Tuple, Type
 
 from openfermion.config import EQ_TOLERANCE
 
-
-
-
 try:
     import sympy
 
