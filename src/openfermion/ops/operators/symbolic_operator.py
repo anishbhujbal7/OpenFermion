@@ -16,8 +16,12 @@ import itertools
 import re
 import warnings
 import numbers
+from typing import Tuple, Type
 
 from openfermion.config import EQ_TOLERANCE
+
+
+
 
 try:
     import sympy
@@ -27,11 +31,11 @@ except ImportError:  # pragma: no cover
     HAS_SYMPY = False
     sympy = None
 
+COEFFICIENT_TYPES: Tuple[Type, ...]
 if HAS_SYMPY:
     COEFFICIENT_TYPES = (int, float, complex, numbers.Number, sympy.Expr, sympy.Symbol, sympy.Basic)
 else:
     COEFFICIENT_TYPES = (int, float, complex, numbers.Number)
-
 
 # COEFFICIENT_TYPES = (int, float, complex, sympy.Expr, numbers.Number)/
 
