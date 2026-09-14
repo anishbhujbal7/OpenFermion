@@ -31,10 +31,8 @@ except ImportError:  # pragma: no cover
 COEFFICIENT_TYPES: Tuple[Type, ...]
 if HAS_SYMPY:
     COEFFICIENT_TYPES = (int, float, complex, numbers.Number, sympy.Expr, sympy.Symbol, sympy.Basic)
-else:
+else:  # pragma: no cover
     COEFFICIENT_TYPES = (int, float, complex, numbers.Number)
-
-# COEFFICIENT_TYPES = (int, float, complex, sympy.Expr, numbers.Number)/
 
 
 class SymbolicOperator(metaclass=abc.ABCMeta):
@@ -728,7 +726,7 @@ class SymbolicOperator(metaclass=abc.ABCMeta):
                     try:
                         if abs(complex(simplified_coeff)) <= abs_tol:
                             continue
-                    except (TypeError, ValueError):
+                    except (TypeError, ValueError):  # pragma: no cover
                         pass
 
                 new_terms[term] = simplified_coeff

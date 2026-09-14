@@ -1481,3 +1481,15 @@ class SymbolicOperatorTest2(unittest.TestCase):
         op = MockOperator1(((0, 1), (1, 0)), x - x)
         op.compress()
         self.assertEqual(len(op.terms), 0)
+
+        # Operator with unsimplified expression that simplifies to 0
+        unsimplified_zero = sympy.sin(x) ** 2 + sympy.cos(x) ** 2 - 1
+        op2 = MockOperator1(((0, 1), (1, 0)), unsimplified_zero)
+        op2.compress()
+        self.assertEqual(len(op2.terms), 0)
+
+        # Operator with symbolic number that cannot be converted to complex
+        func_num = sympy.Function('f')(1)
+        op3 = MockOperator1(((0, 1), (1, 0)), func_num)
+        op3.compress()
+        self.assertEqual(len(op3.terms), 1)
